@@ -16,8 +16,9 @@ class HighlightPlugin extends Plugin {
     }
 
     private function injectAssets(AssetPipelineReady $event) {
-        $event->getAssetPipeline()->addItem(__DIR__ . "/assets/highlight/highlight.pack.js", "js");
-        $event->getAssetPipeline()->addItem(__DIR__ . "/assets/highlight/styles/mono-blue.css", "css");
+        $style = $this->getOption('style', 'mono-blue');
+        $event->getAssetPipeline()->addItem(__DIR__ . "/assets/highlight/styles/{$style}.css", "css");
+        $event->getAssetPipeline()->addItem(__DIR__ . "/assets/highlight/highlight.min.js", "js");
     }
 
     private function injectCode(ContentLayoutApplied $event) {
