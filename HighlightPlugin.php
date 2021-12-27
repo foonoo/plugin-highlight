@@ -25,7 +25,9 @@ class HighlightPlugin extends Plugin {
         $dom = $event->getDOM();
         $xpath = new \DOMXPath($dom);
         $headTag = $xpath->query("//head")->item(0);
-        $scriptTag = $dom->createElement("script", "window.addEventListener('load', ()=>hljs.highlightAll())");
-        $headTag->appendChild($scriptTag);
+        if($headTag) {
+            $scriptTag = $dom->createElement("script", "window.addEventListener('load', ()=>hljs.highlightAll())");
+            $headTag->appendChild($scriptTag);    
+        }
     }
 }
