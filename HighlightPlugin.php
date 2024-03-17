@@ -1,6 +1,6 @@
 <?php
 
-namespace foonoo\plugins\contrib\highlight;
+namespace foonoo\plugins\foonoo\highlight;
 
 use foonoo\Plugin;
 use foonoo\events\ContentLayoutApplied;
@@ -23,11 +23,11 @@ class HighlightPlugin extends Plugin {
 
     private function injectCode(ContentLayoutApplied $event) {
         $dom = $event->getDOM();
-        $xpath = new \DOMXPath($dom);
-        $headTag = $xpath->query("//head")->item(0);
-        if($headTag) {
+        if($dom !== null) {
+            $xpath = new \DOMXPath($dom);
+            $headTag = $xpath->query("//head")->item(0);
             $scriptTag = $dom->createElement("script", "window.addEventListener('load', ()=>hljs.highlightAll())");
-            $headTag->appendChild($scriptTag);    
+            $headTag->appendChild($scriptTag);            
         }
     }
 }
