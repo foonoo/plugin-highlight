@@ -24,7 +24,7 @@ class HighlightPlugin extends Plugin {
 
     private function injectCode(ContentLayoutApplied $event): void
     {
-        $dom = $event->getDocument();
+        $dom = $event->getDOM();
         if($dom !== null) {
             $headTag = $dom->querySelector("head");
             //@var \Dom\Element
